@@ -8,12 +8,12 @@ NMBAIRRO VARCHAR(20) NULL,
 CDCIDADE INTEGER NOT NULL, 
 SGESTADO CHAR(2) NOT NULL );
 
---Criando um índice na entidade BAIRRO referentes as colunas CDCIDADE e SGESTADO
+--Criando um índice na entidade BAIRRO referentes aos atributos CDCIDADE e SGESTADO
 CREATE INDEX XIF8BAIRRO ON BAIRRO (
 CDCIDADE ASC,
 SGESTADO ASC);
 
---Adicionando chave-primária referente as colunas CDBAIRRO e CDCIDADE na entidade BAIRRO
+--Adicionando chave-primária referente aos atributos CDBAIRRO e CDCIDADE na entidade BAIRRO
 ALTER TABLE BAIRRO 
 ADD CONSTRAINT XPKBAIRRO PRIMARY KEY (CDBAIRRO, CDCIDADE, 
 SGESTADO);
@@ -24,10 +24,10 @@ CDCIDADE INTEGER NOT NULL,
 NMCIDADE VARCHAR(20) NULL,
 SGESTADO CHAR(2) NOT NULL);
 
---Criando índice na entidade CIDADE referente a coluna SGESTADO
+--Criando índice na entidade CIDADE referente ao atributo SGESTADO
 CREATE INDEX XIF7CIDADE ON CIDADE (SGESTADO ASC);
 
---Adicionando chave-primária referente as colunas CDCIDADE e SGESTADO na etidade CIDADE
+--Adicionando chave-primária referente aos atributos CDCIDADE e SGESTADO na etidade CIDADE
 ALTER TABLE CIDADE 
 ADD CONSTRAINT XPKCIDADE PRIMARY KEY (CDCIDADE, SGESTADO);
 
@@ -43,7 +43,7 @@ SGESTADO CHAR(2) NULL,
 TELEFONE VARCHAR(20) NULL,
 EMAIL VARCHAR(80) NULL);
 
---Adicionando chave-primária referente a coluna CDCOMPRADOR na entidade COMPRADOR
+--Adicionando chave-primária referente ao atributo CDCOMPRADOR na entidade COMPRADOR
 ALTER TABLE COMPRADOR
 ADD CONSTRAINT XPKCOMPRADOR PRIMARY KEY (CDCOMPRADOR);
 
@@ -52,7 +52,7 @@ CREATE TABLE ESTADO (
 SGESTADO CHAR(2) NOT NULL,
 NMESTADO VARCHAR(20) NULL);
 
---Adicionando chave-primária referente a coluna SGESTADO na entidade ESTADO
+--Adicionando chave-primária referente ao atributo SGESTADO na entidade ESTADO
 ALTER TABLE ESTADO 
 ADD CONSTRAINT XPKESTADO PRIMARY KEY (SGESTADO);
 
@@ -63,7 +63,7 @@ NMFAIXA VARCHAR(30) NULL,
 VLMINIMO DECIMAL(14, 2) NULL,
 VLMAXIMO DECIMAL(14, 2) NULL);
 
---Adicionando chave-primária referente a coluna CDFAIXA na entidade FAIXA_IMOVEL
+--Adicionando chave-primária referente ao atributo CDFAIXA na entidade FAIXA_IMOVEL
 ALTER TABLE FAIXA_IMOVEL 
 ADD CONSTRAINT XPKFAIXA_IMOVEL PRIMARY KEY (CDFAIXA);
 
@@ -84,19 +84,19 @@ STVENDIDO CHAR(1) NULL,
 DTLANCTO DATE NULL,
 IMOVEL_INDICADO INTEGER NULL);
 
---Criando índice na entidade IMOVEL referente a coluna CDVENDEDOR
+--Criando índice na entidade IMOVEL referente ao atributo CDVENDEDOR
 CREATE INDEX XIF12IMOVEL ON IMOVEL (CDVENDEDOR ASC);
 
---Criando índice na entidade IMOVEL referente a coluna IMOVEL_INDICADO
+--Criando índice na entidade IMOVEL referente ao atributo IMOVEL_INDICADO
 CREATE INDEX XIF13IMOVEL ON IMOVEL (IMOVEL_INDICADO ASC);
 
---Criando índices na entidade IMOVEL referentes as colunas CDBAIRRO, CDCIDADE, SGESTADO
+--Criando índices na entidade IMOVEL referentes aos atributos CDBAIRRO, CDCIDADE, SGESTADO
 CREATE INDEX XIF9IMOVEL ON IMOVEL (
 CDBAIRRO ASC,
 CDCIDADE ASC,
 SGESTADO ASC );
 
---Adicionando chave-primária eferente a coluna CDIMOVEL na entidade IMOVEL 
+--Adicionando chave-primária eferente ao atributo CDIMOVEL na entidade IMOVEL 
 ALTER TABLE IMOVEL
 ADD CONSTRAINT XPKIMOVEL PRIMARY KEY (CDIMOVEL);
 
@@ -107,13 +107,13 @@ CDIMOVEL  INTEGER NOT NULL,
 VLOFERTA DECIMAL (16, 2) NULL,
 DTOFERTA DATE NULL );
 
---Criando índice na entidade OFERTA referente a coluna CDCOMPRADOR 
+--Criando índice na entidade OFERTA referente ao atributo CDCOMPRADOR 
 CREATE INDEX XIF10OFERTA ON OFERTA (CDCOMPRADOR ASC);
 
---Criando índice na entidade OFERTA referente a coluna CDIMOVEL
+--Criando índice na entidade OFERTA referente ao atributo CDIMOVEL
 CREATE INDEX XIF11OFERTA ON OFERTA (CDIMOVEL ASC);
 
---Adicionando chave-primária referente as colunas CDCOMPRADOR CDIMOVEL na entidade IMOVEL
+--Adicionando chave-primária referente aos atributos CDCOMPRADOR CDIMOVEL na entidade IMOVEL
 ALTER TABLE OFERTA 
 ADD CONSTRAINT XPKOFERTA PRIMARY KEY (CDCOMPRADOR, CDIMOVEL);
 
@@ -129,50 +129,59 @@ SGESTADO CHAR(2) NULL,
 TELEFONE VARCHAR(20) NULL,
 EMAIL VARCHAR(80) NULL);
 
---Adicionando chave-primária referente a coluna CDVENDEDOR na entidade VENDEDOR
+--Adicionando chave-primária referente ao atributo CDVENDEDOR na entidade VENDEDOR
 ALTER TABLE VENDEDOR
 ADD CONSTRAINT XPKVENDEDOR PRIMARY KEY (CDVENDEDOR);
 
---Adicionando chave-estrangeira na 
+--Adicionando chave-estrangeira referente aos atributos CDCIDADE SGESTADO da entidade CIDADE na entidade BAIRRO
 ALTER TABLE BAIRRO 
 ADD CONSTRAINT CIDADE_BAIRRO
 FOREIGN KEY (CDCIDADE, SGESTADO)
 REFERENCES CIDADE;
 
+--Adicionando chave-estrangeira referente ao atributo SGESTADO da entidade ESTADO na entidade CIDADE
 ALTER TABLE CIDADE 
 ADD CONSTRAINT ESTADO_CIDADE
 FOREIGN KEY (SGESTADO)
 REFERENCES ESTADO;
 
+--Adicionando chave-estrangeira referente ao atributo IMOVEL_INDICADO da entidade IMOVEL na entidade IMOVEL
 ALTER TABLE IMOVEL
 ADD CONSTRAINT IMOVEL_INDICADO
 FOREIGN KEY (IMOVEL_INDICADO)
 REFERENCES IMOVEL;
 
+--Adicionando chave-estrangeira referente ao atributo CDVENDEDOR da entidade VENDEDOR na entidade IMOVEL
 ALTER TABLE IMOVEL 
 ADD CONSTRAINT VENDEDOR_IMOVEL
 FOREIGN KEY (CDVENDEDOR)
 REFERENCES VENDEDOR;
 
+--Adicionando chave-estrangeira referente ao atributo CDVENDEDOR da entidade VENDEDOR na entidade IMOVEL
 ALTER TABLE IMOVEL
 ADD CONSTRAINT BAIRRO_IMOVEL
 FOREIGN KEY (CDBAIRRO, CDCIDADE, SGESTADO)
 REFERENCES BAIRRO;
 
+--Adicionando chave-estrangeira referente ao atributo CDIMOVEL da entidade IMOVEL na entidade OFERTA
 ALTER TABLE OFERTA 
 ADD CONSTRAINT IMOVEL_OFERTA
 FOREIGN KEY (CDIMOVEL)
 REFERENCES IMOVEL;
 
+--Adicionando chave-estrangeira referente ao atributo CDCOMNPRADOR da entidade COMPRADOR na entidade OFERTA
 ALTER TABLE OFERTA 
 ADD CONSTRAINT COMPRADOR_OFERTA
 FOREIGN KEY (CDCOMPRADOR)
 REFERENCES COMPRADOR;
 
+--Criando índice na entidade VENDEDOR referente ao atributo NMVENDEDOR
 CREATE INDEX XIFNMVENDEDOR ON VENDEDOR (NMVENDEDOR ASC);
 
+--Criando índice na entidade COMPRADOR referente ao atributo NMCOMPRADOR
 CREATE INDEX XIFNMCOMPRADOR ON COMPRADOR (NMCOMPRADOR ASC);
 
+--Criando índices na entidade ODFERTA referente aos atributos CDIMOVEL VLOFERTA
 CREATE INDEX XIFCDIMOVEL ON OFERTA (CDIMOVEL ASC);
 CREATE INDEX XIFVLIMOVEL ON OFERTA ( VLOFERTA DESC);
 
