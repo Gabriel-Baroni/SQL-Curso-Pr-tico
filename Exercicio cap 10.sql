@@ -1,4 +1,4 @@
---Usando o banco de dados ImovelNet
+--Usando o banco de dados criado ImovelNet
 USE ImovelNet
 
 --Fazendo uma subquery, onde é mostrado uma lista dos imóveis que tenham o bairro igual a do imóvel 2, mas excluindo o imóvel 2
