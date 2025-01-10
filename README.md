@@ -4,7 +4,7 @@ This repository contains solutions and notes for the exercises from the book **"
 
 ## Table of Contents of the book in Brazilian Portuguese
 
-- `Introduction`
+- `Introdução`
 - `Projetando Banco de Dados`
 - `Normalização de Dados`
 - `Criando um banco de dados`
