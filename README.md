@@ -1,6 +1,6 @@
 # SQL Course Practical Exercises
 
-This repository contains solutions and notes for the exercises from the book **"SQL: Curso Prático"** by the author Celso Henrique Poderoso de Oliveira. The goal is to practice SQL concepts and techniques.
+This repository contains solutions and notes for the exercises from the book **"SQL: Curso Prático"** by the author Celso Henrique Poderoso de Oliveira and the publisher NOVATEC. The goal is to practice SQL concepts and techniques.
 
 ## Table of Contents of the book in Brazilian Portuguese
 
